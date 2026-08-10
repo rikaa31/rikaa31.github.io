@@ -14,15 +14,15 @@
     /* ------------------------------------------ */
     * {
       box-sizing: border-box; /* Memastikan padding & border tidak merusak lebar elemen */
-      margin: 0;             /* Menghapus margin bawaan browser */
-      padding: 0;            /* Menghapus padding bawaan browser */
+      margin: 0;              /* Menghapus margin bawaan browser */
+      padding: 0;             /* Menghapus padding bawaan browser */
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Jenis font utama */
     }
     
     body {
       background-color: #f7f9fc; /* Warna latar belakang halaman (abu-abu muda) */
       color: #1a1d20;            /* Warna teks utama (hitam keabu-abuan) */
-      padding: 20px 40px 60px;   /* Jarak ruang di sekeliling halaman (Atas Kiri/Kanan Bawah) */
+      padding: 20px 40px 60px;   /* Jarak ruang di sekeliling halaman */
     }
 
     /* Pembungkus utama untuk membatasi lebar konten di tengah */
@@ -37,12 +37,13 @@
     nav {
       display: flex;
       justify-content: center;   /* Posisi menu berada di tengah */
-      gap: 20px;                 /* Jarak antar link navigasi */
+      gap: 15px;                 /* Jarak antar link navigasi */
       margin-bottom: 50px;       /* Jarak navigasi ke konten di bawahnya */
       padding: 15px;
       background: #ffffff;       /* Latar putih navigasi */
       border-radius: 30px;       /* Sudut melengkung halus (kapsul) */
       box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Bayangan lembut di bawah navbar */
+      flex-wrap: wrap;           /* Memungkinkan menu berbaris jika layar sempit */
     }
 
     nav a {
@@ -53,6 +54,7 @@
       padding: 8px 16px;
       border-radius: 20px;
       transition: all 0.3s ease; /* Efek transisi halus saat tombol di-hover */
+      white-space: nowrap;
     }
 
     /* Efek saat link di-hover (disorot) atau sedang aktif */
@@ -67,7 +69,7 @@
     .hero {
       display: flex;
       justify-content: space-between; /* Teks di kiri, gambar di kanan */
-      align-items: flex-start;
+      align-items: center;
       margin-bottom: 70px;
       gap: 40px;                 /* Jarak antara blok teks dan gambar */
     }
@@ -110,8 +112,9 @@
       width: 240px;              /* Lebar foto */
       height: 290px;             /* Tinggi foto */
       flex-shrink: 0;            /* Mencegah gambar menyusut saat layar mengecil */
-      border-radius: 4px;        /* Lengkungan sudut foto */
+      border-radius: 12px;       /* Lengkungan sudut foto */
       overflow: hidden;          /* Memotong bagian foto yang keluar dari frame */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
 
     .hero-image-wrapper img {
@@ -193,12 +196,68 @@
       color: #64748b;
       line-height: 1.5;
     }
+
+    /* ------------------------------------------ */
+    /* 5. Tampilan Responsif (HP / Tablet)        */
+    /* ------------------------------------------ */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px 20px 40px; /* Menyesuaikan jarak pinggir layar HP */
+      }
+
+      /* Navigasi HP */
+      nav {
+        gap: 8px;
+        padding: 10px;
+        border-radius: 20px;
+        margin-bottom: 35px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      /* Section Hero di HP */
+      .hero {
+        flex-direction: column-reverse; /* Mengubah urutan: Gambar di atas, teks di bawah */
+        align-items: center;
+        text-align: center;
+        gap: 25px;
+        margin-bottom: 50px;
+      }
+
+      .hero-title {
+        font-size: 28px; /* Memperkecil ukuran judul di HP */
+        margin-bottom: 16px;
+      }
+
+      .hero-desc {
+        font-size: 14px;
+        max-width: 100%;
+      }
+
+      .hero-image-wrapper {
+        width: 180px;  /* Penyesuaian ukuran foto di HP */
+        height: 220px;
+      }
+
+      /* Section Software di HP */
+      .software-title {
+        font-size: 24px;
+      }
+
+      .software-grid {
+        grid-template-columns: 1fr; /* Kartu disusun ke bawah 1 kolom */
+        gap: 15px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- ========================================== -->
-  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                 -->
   <!-- ========================================== -->
   <div class="container">
 
@@ -214,16 +273,16 @@
     <!-- 2. Section Hero (Perkenalan & Foto Profil) -->
     <div class="hero">
       
-      <!-- Teks Perkenalan di Kiri -->
+      <!-- Teks Perkenalan -->
       <div class="hero-text">
         <div class="hero-subtitle">HALO, PERKENALKAN</div>
-        <h1 class="hero-title">Saya <span>Rika Aulia</span>,<br>mahasiswa Teknik<br>Multimedia &<br>Jaringan</h1>
+        <h1 class="hero-title">Saya <span>Rika Aulia</span>,<br>mahasiswa Teknik Multimedia & Jaringan</h1>
         <p class="hero-desc">
           Selama perkuliahan, saya telah mengerjakan berbagai proyek, seperti UI/UX Design, Internet of Things (IoT), Animasi 3D, dan Front-End Website. Portofolio ini berisi kumpulan proyek yang telah saya kerjakan sebagai bentuk pengalaman, pembelajaran, dan perkembangan kemampuan saya.
         </p>
       </div>
 
-      <!-- Foto Profil di Kanan -->
+      <!-- Foto Profil -->
       <div class="hero-image-wrapper">
         <img src="asset/foto.jpeg" alt="Foto Rika Aulia">
       </div>
@@ -241,7 +300,6 @@
         <!-- Kartu 1: Figma -->
         <div class="card">
           <div class="card-icon">
-            <!-- Ikon SVG Vektor Figma -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 57" fill="none">
               <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z" fill="#0ACF83"/>
               <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#03A9F4"/>
@@ -257,7 +315,6 @@
         <!-- Kartu 2: Blender -->
         <div class="card">
           <div class="card-icon">
-            <!-- Ikon SVG Vektor Blender -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path d="M480 304c0 79.5-64.5 144-144 144s-144-64.5-144-144c0-21 4.5-40.9 12.6-58.8L35.6 150.2c-10.7-6.2-14.4-19.9-8.2-30.6 6.2-10.7 19.9-14.4 30.6-8.2l191.1 110.3c25.2-14.8 54.5-23.7 85.9-23.7 79.5 0 144 64.5 144 144z" fill="#E87D0D"/>
               <path d="M336 216c-48.6 0-88 39.4-88 88s39.4 88 88 88 88-39.4 88-88-39.4-88-88-88z" fill="#265787"/>
@@ -271,7 +328,6 @@
         <!-- Kartu 3: VS Code -->
         <div class="card">
           <div class="card-icon">
-            <!-- Ikon SVG Vektor Visual Studio Code -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
               <path d="M 23.5,62.8 L 3.5,47.5 C 1.2,45.8 1.2,42.2 3.5,40.5 L 23.5,25.2 C 25.4,23.8 28.1,24.2 29.5,26.1 L 43.8,44.0 L 29.5,61.9 C 28.1,63.8 25.4,64.2 23.5,62.8 Z" fill="#0066B8"/>
               <path d="M 23.5,62.8 L 74.2,16.2 C 76.8,13.8 81.0,15.6 81.0,19.2 L 81.0,68.8 C 81.0,72.4 76.8,74.2 74.2,71.8 L 23.5,25.2" fill="#007ACC"/>
