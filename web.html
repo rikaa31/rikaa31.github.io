@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front End Website</title>
+  
+  <!-- ========================================== -->
+  <!-- BAGIAN STYLESHEET (CSS)                   -->
+  <!-- ========================================== -->
+  <style>
+    /* ------------------------------------------ */
+    /* 1. Pengaturan Dasaran / Reset CSS          */
+    /* ------------------------------------------ */
+    * {
+      box-sizing: border-box; /* Ukuran total elemen dihitung beserta padding & border */
+      margin: 0;             /* Menghapus margin default bawaan browser */
+      padding: 0;            /* Menghapus padding default bawaan browser */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font utama */
+    }
+
+    body {
+      /* Gradasi Biru Slate Modern pada Latar Belakang Utama */
+      background: linear-gradient(135deg, #84B6E4 0%, #203B5C 50%, #93c5fd 100%);
+      background-attachment: fixed; /* Latar belakang tetap saat di-scroll */
+      color: #0f172a;            /* Warna teks utama (Biru Gelap / Slate) */
+      padding: 20px 20px 60px;   /* Spasi bagian atas, samping, dan bawah */
+      display: flex;
+      flex-direction: column;    /* Menyusun navbar dan container secara vertikal */
+      align-items: center;       /* Memposisikan seluruh elemen di tengah layar */
+      min-height: 100vh;
+    }
+
+    /* ------------------------------------------ */
+    /* 2. Style Menu Navigasi (Navbar Transparan) */
+    /* ------------------------------------------ */
+    nav {
+      display: flex;
+      justify-content: center;   /* Meratakan opsi menu di tengah */
+      gap: 20px;                 /* Jarak antar link navigasi */
+      margin-bottom: 40px;       /* Jarak navigasi ke judul halaman */
+      padding: 12px 25px;
+      background: rgba(255, 255, 255, 0.2); /* Efek kaca transparan putih */
+      backdrop-filter: blur(12px);          /* Efek blur pada latar belakang kaca */
+      border: 1px solid rgba(255, 255, 255, 0.3); /* Border tipis efek kaca */
+      border-radius: 30px;                  /* Sudut melengkung halus (kapsul) */
+    }
+
+    nav a {
+      text-decoration: none;     /* Menghapus garis bawah link */
+      color: #ffffff;            /* Warna teks link default (putih) */
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease; /* Transisi efek hover yang halus */
+    }
+
+    /* Efek hover dan penanda tombol aktif */
+    nav a:hover, nav a.active {
+      color: #1e3a8a;            /* Teks berubah menjadi biru tua saat disorot/aktif */
+      background-color: #ffffff; /* Latar berubah menjadi putih solid */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ------------------------------------------ */
+    /* 3. Style Pembungkus Halaman Utama         */
+    /* ------------------------------------------ */
+    .container {
+      max-width: 1000px;         /* Batas lebar maksimum seluruh konten */
+      width: 100%;
+    }
+
+    /* Judul Utama "FRONT END WEBSITE" */
+    .main-title {
+      text-align: center;
+      font-size: 46px;
+      font-weight: 900;
+      color: #ffffff;            /* Warna putih kontras di atas gradasi biru */
+      letter-spacing: 2px;
+      margin-bottom: 50px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan lembut pada judul */
+    }
+
+    /* ------------------------------------------ */
+    /* 4. Layout Kartu Showcase Website          */
+    /* ------------------------------------------ */
+    .section-website {
+      display: flex;             /* Menyusun gambar dan teks secara horizontal */
+      gap: 40px;                 /* Jarak antara gambar mockup dan teks */
+      align-items: center;       /* Memposisikan teks dan gambar sejajar vertikal */
+      /* Card bergaya Glassmorphism dengan latar terang transparan */
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.977);
+      padding: 35px;
+      border-radius: 20px;       /* Sudut kartu melengkung */
+      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.25); /* Bayangan lembut biru gelap s*/
+    }
+
+    /* Frame/Pembungkus Gambar Mockup Website */
+    .image-wrapper {
+      width: 520px;              /* Ukuran lebar gambar dibuat lebih dominan */
+      flex-shrink: 0;            /* Mencegah gambar menyusut saat layar menyempit */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;       /* Mengikuti proporsi asli gambar tanpa terdistorsi */
+      filter: drop-shadow(0 12px 24px rgba(30, 58, 138, 0.25)); /* Bayangan khusus dengan nuansa biru */
+    }
+
+    /* Blok Teks Informasi Proyek Website */
+    .content-box {
+      flex: 1;                   /* Mengambil sisa area di sebelah gambar */
+    }
+
+    .content-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #1e3a8a;            /* Judul konten bernuansa biru navy pekat */
+      margin-bottom: 18px;
+      line-height: 1.25;
+    }
+
+    .content-desc {
+      font-size: 16px;
+      line-height: 1.7;          /* Jarak antar baris teks agar mudah dibaca */
+      color: #334155;            /* Teks deskripsi bernuansa slate gelap */
+    }
+
+    /* ------------------------------------------ */
+    /* 5. Media Query (Responsif Layar HP/Tablet) */
+    /* ------------------------------------------ */
+    @media (max-width: 900px) {
+      /* Mengubah susunan samping menjadi bertumpuk vertikal saat di layar kecil */
+      .section-website {
+        flex-direction: column;
+        padding: 25px;
+      }
+      .image-wrapper {
+        width: 100%;             /* Gambar mengikuti lebar penuh layar */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- ========================================== -->
+
+  <!-- Menu Navigasi Utama -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="uiux.html">UI/UX Design</a>
+    <a href="animasi.html">Animasi 3D</a>
+    <a href="iot.html">IoT</a>
+    <a href="web.html" class="active">Front End</a> <!-- Link Aktif -->
+  </nav>
+
+  <!-- Pembungkus Konten Utama -->
+  <div class="container">
+
+    <!-- Judul Halaman -->
+    <h1 class="main-title">FRONT END WEBSITE</h1>
+
+    <!-- Seksi Showcase Proyek Website -->
+    <div class="section-website">
+      
+      <!-- Gambar Mockup Tampilan Website (Multi-device) -->
+      <div class="image-wrapper">
+        <img src="asset/website.png" alt="Sistem Informasi Tugas Akhir Mockup">
+      </div>
+      
+      <!-- Deskripsi Penjelasan Proyek Website -->
+      <div class="content-box">
+        <h2 class="content-title">Sistem Informasi Tugas Akhir</h2>
+        <p class="content-desc">
+          Sistem Operasi Tugas Akhir merupakan website yang mempermudah mahasiswa dan dosen dalam mengelola proses pengajuan tugas akhir, mulai dari pengajuan judul hingga tahapan persetujuan.
+        </p>
+      </div>
+
+    </div> <!-- Akhir section-website -->
+
+  </div> <!-- Akhir container -->
+
+</body>
+</html>

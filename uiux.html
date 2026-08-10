@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI & UX Design</title>
+  
+  <!-- ========================================== -->
+  <!-- BAGIAN STYLESHEET (CSS)                   -->
+  <!-- ========================================== -->
+  <style>
+    /* ------------------------------------------ */
+    /* 1. Pengaturan Dasar (Reset CSS & Layout)   */
+    /* ------------------------------------------ */
+    * {
+      box-sizing: border-box; /* Padding dan border terhitung di dalam lebar total elemen */
+      margin: 0;             /* Menghapus margin default bawaan browser */
+      padding: 0;            /* Menghapus padding default bawaan browser */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font utama */
+    }
+
+    body {
+      background-color: #8c9e5e; /* Warna latar belakang halaman (hijau sage) */
+      display: flex;
+      flex-direction: column;    /* Menyusun elemen navbar dan container secara vertikal */
+      align-items: center;        /* Posisikan konten tepat di tengah secara horizontal */
+      padding: 20px 20px 40px;   /* Ruang bagian atas, samping, dan bawah */
+    }
+
+    /* ------------------------------------------ */
+    /* 2. Style Menu Navigasi (Navbar Transparan) */
+    /* ------------------------------------------ */
+    nav {
+      display: flex;
+      justify-content: center;   /* Meratakan menu di tengah */
+      gap: 20px;                 /* Jarak antar link navigasi */
+      margin-bottom: 40px;       /* Jarak navigasi ke konten di bawahnya */
+      padding: 12px 25px;
+      background: rgba(255, 255, 255, 0.2); /* Latar transparan (kaca) */
+      backdrop-filter: blur(10px);          /* Efek buram pada latar kaca */
+      border-radius: 30px;                  /* Sudut melengkung bentuk kapsul */
+    }
+
+    nav a {
+      text-decoration: none;     /* Menghapus garis bawah pada link */
+      color: #ffffff;            /* Warna teks link (putih) */
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease; /* Transisi halus saat disorot kursor */
+    }
+
+    /* Efek hover dan status tombol aktif */
+    nav a:hover, nav a.active {
+      color: #8c9e5e;            /* Warna teks berubah jadi hijau sage */
+      background-color: #ffffff; /* Latar berubah jadi putih solid */
+    }
+
+    /* ------------------------------------------ */
+    /* 3. Style Pembungkus Halaman Utama         */
+    /* ------------------------------------------ */
+    .page-container {
+      width: 100%;
+      max-width: 600px;          /* Batas lebar maksimum konten agar tidak melebar jauh */
+      display: flex;
+      flex-direction: column;    /* Menyusun judul, mockup top, deskripsi, & mockup bottom */
+      align-items: center;       /* Memastikan item berada di posisi tengah */
+    }
+
+    /* Judul Utama "UI & UX DESIGN" */
+    .main-title {
+      color: #ffffff;
+      font-size: 56px;
+      font-weight: 800;
+      text-align: right;        /* Teks rata kanan */
+      width: 100%;
+      line-height: 0.95;         /* Jarak antar baris teks yang rapat */
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+
+    /* ------------------------------------------ */
+    /* 4. Style Mockup HP (Umum & Bingkai)       */
+    /* ------------------------------------------ */
+    .phone-frame {
+      border: 3px solid #000;    /* Garis tepi hitam penanda bingkai HP */
+      border-radius: 28px;       /* Lengkungan sudut menyerupai layar HP modern */
+      overflow: hidden;          /* Memotong bagian gambar yang keluar dari bingkai */
+      background: #fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Bayangan di bawah bingkai HP */
+    }
+
+    .phone-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;         /* Memastikan gambar menyesuaikan bingkai tanpa distorsi */
+      display: block;
+    }
+
+    /* ------------------------------------------ */
+    /* 5. Kelompok Mockup Bagian Atas (3 Layar)   */
+    /* ------------------------------------------ */
+    .mockup-group-top {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;  /* Posisi awal sejajar di bagian atas */
+      gap: 15px;                 /* Jarak antar bingkai HP */
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    /* Variasi tinggi & posisi offset vertikal untuk efek melayang acak/kreatif */
+    .phone-top-1 { width: 155px; height: 300px; margin-top: 15px; } /* HP 1 agak turun */
+    .phone-top-2 { width: 155px; height: 310px; }                   /* HP 2 paling tinggi */
+    .phone-top-3 { width: 155px; height: 300px; margin-top: 45px; } /* HP 3 turun lebih jauh */
+
+    /* ------------------------------------------ */
+    /* 6. Style Teks Deskripsi Proyek             */
+    /* ------------------------------------------ */
+    .description {
+      color: #ffffff;
+      font-size: 20px;
+      line-height: 1.5;
+      text-align: left;         /* Teks deskripsi rata kiri */
+      margin-bottom: 40px;
+      padding: 0 10px;
+    }
+
+    /* ------------------------------------------ */
+    /* 7. Kelompok Mockup Bagian Bawah (3 Layar)  */
+    /* ------------------------------------------ */
+    .mockup-group-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;    /* Posisi awal sejajar di bagian bawah */
+      gap: 15px;                 /* Jarak antar bingkai HP */
+      width: 100%;
+    }
+
+    /* Variasi tinggi & posisi offset vertikal bagian bawah */
+    .phone-bottom-1 { width: 155px; height: 300px; }
+    .phone-bottom-2 { width: 155px; height: 310px; margin-bottom: 30px; } /* HP tengah lebih tinggi */
+    .phone-bottom-3 { width: 155px; height: 300px; }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- ========================================== -->
+  
+  <!-- Menu Navigasi Utama -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="uiux.html" class="active">UI/UX Design</a> <!-- Link Aktif -->
+    <a href="animasi.html">Animasi 3D</a>
+    <a href="iot.html">IoT</a>
+    <a href="web.html">Front End</a>
+  </nav>
+
+  <!-- Pembungkus Utama Halaman -->
+  <div class="page-container">
+
+    <!-- Judul Halaman -->
+    <h1 class="main-title">UI & UX<br>DESIGN</h1>
+
+    <!-- Group Mockup HP Bagian Atas (3 Layar Pertama) -->
+    <div class="mockup-group-top">
+      <div class="phone-frame phone-top-1">
+        <img src="asset/1.png" alt="UseT UI Screen 1">
+      </div>
+      <div class="phone-frame phone-top-2">
+        <img src="asset/2.png" alt="UseT UI Screen 2">
+      </div>
+      <div class="phone-frame phone-top-3">
+        <img src="asset/3.png" alt="UseT UI Screen 3">
+      </div>
+    </div>
+
+    <!-- Deskripsi Singkat Aplikasi -->
+    <p class="description">
+      Aplikasi USET merupakan desain UI/UX aplikasi konsultasi kesehatan yang memudahkan pengguna menemukan rumah sakit terdekat, mengakses layanan gawat darurat, dan melakukan konsultasi dengan dokter secara online.
+    </p>
+
+    <!-- Group Mockup HP Bagian Bawah (3 Layar Kedua) -->
+    <div class="mockup-group-bottom">
+      <div class="phone-frame phone-bottom-1">
+        <img src="asset/4.png" alt="UseT UI Screen 4">
+      </div>
+      <div class="phone-frame phone-bottom-2">
+        <img src="asset/5.png" alt="UseT UI Screen 5">
+      </div>
+      <div class="phone-frame phone-bottom-3">
+        <img src="asset/6.png" alt="UseT UI Screen 6">
+      </div>
+    </div>
+
+  </div> <!-- Akhir page-container -->
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animasi 3D</title>
+  
+  <!-- ========================================== -->
+  <!-- BAGIAN STYLESHEET (CSS)                   -->
+  <!-- ========================================== -->
+  <style>
+    /* ------------------------------------------ */
+    /* 1. Pengaturan Dasar (Reset CSS & Body)     */
+    /* ------------------------------------------ */
+    * {
+      box-sizing: border-box; /* Padding dan border terhitung di dalam ukuran total elemen */
+      margin: 0;             /* Menghapus margin bawaan browser */
+      padding: 0;            /* Menghapus padding bawaan browser */
+    }
+
+    body {
+      background-color: #80120a; /* Warna latar belakang halaman (merah marun) */
+      color: #ffffff;            /* Warna teks utama (putih) */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Jenis font utama */
+      padding: 20px 20px 40px;   /* Ruang bagian atas, samping, dan bawah */
+      display: flex;
+      flex-direction: column;    /* Menyusun elemen navbar dan container secara vertikal */
+      align-items: center;       /* Memposisikan seluruh konten di tengah layar */
+    }
+
+    /* ------------------------------------------ */
+    /* 2. Style Menu Navigasi (Navbar Transparan) */
+    /* ------------------------------------------ */
+    nav {
+      display: flex;
+      justify-content: center;   /* Meratakan menu di tengah */
+      gap: 20px;                 /* Jarak antar opsi link navigasi */
+      margin-bottom: 30px;       /* Jarak navigasi ke judul di bawahnya */
+      padding: 12px 25px;
+      background: rgba(255, 255, 255, 0.15); /* Latar transparan (efek kaca) */
+      backdrop-filter: blur(10px);          /* Efek buram pada latar belakang kaca */
+      border-radius: 30px;                  /* Sudut melengkung halus (bentuk kapsul) */
+    }
+
+    nav a {
+      text-decoration: none;     /* Menghapus garis bawah pada link */
+      color: #ffffff;            /* Warna teks link (putih) */
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease; /* Efek transisi halus saat disorot kursor */
+    }
+
+    /* Efek hover dan penanda menu yang sedang aktif */
+    nav a:hover, nav a.active {
+      color: #80120a;            /* Warna teks berubah jadi merah marun */
+      background-color: #ffffff; /* Latar berubah jadi putih solid */
+    }
+
+    /* ------------------------------------------ */
+    /* 3. Style Pembungkus Halaman (Container)   */
+    /* ------------------------------------------ */
+    .container {
+      max-width: 500px;          /* Membatasi lebar maksimum galeri animasi agar rapi */
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Judul Utama "Animasi 3D" */
+    .main-title {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      font-family: 'Courier New', Courier, monospace; /* Style font gaya retro/tech */
+      -webkit-text-stroke: 1px #fff;                  /* Garis tepi teks berwarna putih */
+    }
+
+    /* ------------------------------------------ */
+    /* 4. Style Galeri Gambar / Portfolio Render  */
+    /* ------------------------------------------ */
+    
+    /* Gambar Bagian Atas (Header Showroom 3D) */
+    .image-top {
+      width: 100%;
+      height: 240px;
+      background: #000;          /* Latar hitam jika gambar belum termuat */
+      margin-bottom: 15px;
+    }
+
+    .image-top img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;       /* Memastikan seluruh gambar terlihat penuh tanpa terpotong */
+    }
+
+    /* Grid Bagian Tengah (2 Kolom Gambar Berjajar) */
+    .grid-middle {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Membagi menjadi 2 kolom sama lebar */
+      gap: 15px;                      /* Jarak antar gambar */
+      margin-bottom: 15px;
+    }
+
+    .grid-middle-item {
+      height: 180px;
+      background: #000;
+    }
+
+    .grid-middle-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;         /* Mengisi area kotak secara penuh */
+    }
+
+    /* Gambar Bagian Bawah */
+    .image-bottom {
+      width: 100%;
+      height: 220px;
+      background: #000;
+      margin-bottom: 30px;
+    }
+
+    .image-bottom img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;         /* Mengisi area kotak secara penuh */
+    }
+
+    /* ------------------------------------------ */
+    /* 5. Style Deskripsi Proyek                  */
+    /* ------------------------------------------ */
+    .description {
+      font-size: 14px;
+      line-height: 1.5;          /* Jarak antar baris teks agar enak dibaca */
+      text-align: left;         /* Teks deskripsi rata kiri */
+      color: #f1f5f9;            /* Warna putih lembut */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- ========================================== -->
+
+  <!-- Menu Navigasi Utama -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="uiux.html">UI/UX Design</a>
+    <a href="animasi.html" class="active">Animasi 3D</a> <!-- Link Aktif -->
+    <a href="iot.html">IoT</a>
+    <a href="web.html">Front End</a>
+  </nav>
+
+  <!-- Pembungkus Konten Utama -->
+  <div class="container">
+
+    <!-- Judul Halaman -->
+    <h1 class="main-title">Animasi 3D</h1>
+
+    <!-- 1. Gambar Utama Bagian Atas (Logo 3D) -->
+    <div class="image-top">
+      <img src="asset/anim1.png" alt="Gantech 3D Logo">
+    </div>
+
+    <!-- 2. Grid 2 Kolom Bagian Tengah (Detail Render) -->
+    <div class="grid-middle">
+      <div class="grid-middle-item">
+        <img src="asset/anim2.png" alt="3D Desk Setup">
+      </div>
+      <div class="grid-middle-item">
+        <img src="asset/anim3.png" alt="3D Layer Explosion">
+      </div>
+    </div>
+
+    <!-- 3. Gambar Bagian Bawah (Render Keyboard) -->
+    <div class="image-bottom">
+      <img src="asset/anim4.png" alt="3D Gaming Keyboard">
+    </div>
+
+    <!-- 4. Penjelasan singkat mengenai proyek 3D -->
+    <p class="description">
+      Gantech (Global Advanced Nusa TECHNOLOGY) adalah perusahaan teknologi yang berfokus pada pengembangan solusi perangkat keras dan perangkat lunak untuk gaming dan teknologi modern.
+    </p>
+
+  </div> <!-- Akhir container -->
+
+</body>
+</html>

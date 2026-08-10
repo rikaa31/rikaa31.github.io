@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internet Of Things</title>
+  
+  <!-- ========================================== -->
+  <!-- BAGIAN STYLESHEET (CSS)                   -->
+  <!-- ========================================== -->
+  <style>
+    /* ------------------------------------------ */
+    /* 1. Pengaturan Dasaran / Reset CSS          */
+    /* ------------------------------------------ */
+    * {
+      box-sizing: border-box; /* Ukuran elemen mencakup padding & border */
+      margin: 0;             /* Menghapus margin default dari browser */
+      padding: 0;            /* Menghapus padding default dari browser */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font utama */
+    }
+
+    body {
+      background-color: #b2b7bd; /* Warna latar belakang halaman (abu-abu kebiruan) */
+      color: #1e293b;            /* Warna teks utama (gelap) */
+      padding: 20px 20px 60px;   /* Spasi bagian atas, kanan/kiri, dan bawah */
+      display: flex;
+      flex-direction: column;    /* Menata navbar dan container secara vertikal */
+      align-items: center;       /* Memposisikan seluruh konten di tengah layar */
+    }
+
+    /* ------------------------------------------ */
+    /* 2. Style Menu Navigasi (Navbar Transparan) */
+    /* ------------------------------------------ */
+    nav {
+      display: flex;
+      justify-content: center;   /* Meratakan menu di tengah */
+      gap: 20px;                 /* Jarak antar opsi link navigasi */
+      margin-bottom: 40px;       /* Jarak navigasi ke judul di bawahnya */
+      padding: 12px 25px;
+      background: rgba(255, 255, 255, 0.4); /* Efek latar kaca transparan */
+      backdrop-filter: blur(10px);          /* Efek buram/blur di belakang kaca */
+      border-radius: 30px;                  /* Sudut bulat melengkung (kapsul) */
+    }
+
+    nav a {
+      text-decoration: none;     /* Menghapus garis bawah link */
+      color: #1e2330;            /* Warna teks link default */
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease; /* Transisi efek hover yang halus */
+    }
+
+    /* Efek hover dan status tombol aktif */
+    nav a:hover, nav a.active {
+      color: #ffffff;            /* Teks menjadi putih saat aktif/hover */
+      background-color: #1e2330; /* Latar berubah jadi warna gelap */
+    }
+
+    /* ------------------------------------------ */
+    /* 3. Style Pembungkus Halaman (Container)   */
+    /* ------------------------------------------ */
+    .container {
+      max-width: 950px;          /* Batas lebar maksimum seluruh konten */
+      width: 100%;
+    }
+
+    /* Judul Utama "INTERNET OF THINGS" */
+    .main-title {
+      text-align: center;
+      font-size: 46px;
+      font-weight: 900;
+      color: #1e2330;
+      letter-spacing: 2px;
+      margin-bottom: 50px;
+    }
+
+    /* ------------------------------------------ */
+    /* 4. Style Seksi Proyek 1 (Kebocoran Gas)   */
+    /* ------------------------------------------ */
+    .section-gas {
+      display: flex;             /* Menyusun gambar dan deskripsi berdampingan */
+      gap: 35px;                 /* Jarak antara bingkai foto dan deskripsi */
+      align-items: center;       /* Memposisikan teks dan foto sejajar secara vertikal */
+      margin-bottom: 70px;       /* Jarak ke seksi proyek berikutnya */
+    }
+
+    /* Style Frame/Bingkai Foto Proyek */
+    .image-wrapper {
+      width: 480px;              /* Lebar bingkai foto */
+      flex-shrink: 0;            /* Mencegah gambar menyusut saat tampilan diperkecil */
+      border-radius: 6px;        /* Lengkungan sudut foto */
+      overflow: hidden;          /* Memotong bagian foto yang membalap dari frame */
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); /* Bayangan lembut di belakang foto */
+      background: #000;          /* Warna latar hitam jika gambar belum muncul */
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: 360px;             /* Tinggi area foto */
+      object-fit: cover;         /* Memastikan gambar terisi rapi tanpa terdistorsi */
+      display: block;
+    }
+
+    /* Style Blok Teks Informasi Proyek */
+    .content-box {
+      flex: 1;                   /* Mengambil sisa ruang di sebelah gambar */
+    }
+
+    .content-title {
+      font-size: 30px;
+      font-weight: 800;
+      color: #1a202c;
+      margin-bottom: 18px;
+      line-height: 1.25;
+    }
+
+    .content-desc {
+      font-size: 16px;
+      line-height: 1.6;          /* Jarak antar baris teks agar nyaman dibaca */
+      color: #2d3748;
+    }
+
+    /* ------------------------------------------ */
+    /* 5. Style Seksi Proyek 2 (Pengambil Sampah)*/
+    /* ------------------------------------------ */
+    .section-sampah {
+      display: flex;             /* Menyusun deskripsi dan foto berdampingan */
+      gap: 35px;                 /* Jarak antar elemen */
+      align-items: center;
+    }
+
+    /* ------------------------------------------ */
+    /* 6. Media Query (Responsif Layar Kecil/HP)  */
+    /* ------------------------------------------ */
+    @media (max-width: 850px) {
+      /* Mengubah tampilan berdampingan menjadi bertumpuk vertikal pada HP */
+      .section-gas, .section-sampah {
+        flex-direction: column;
+      }
+      .image-wrapper {
+        width: 100%;             /* Mengikuti lebar penuh layar HP */
+      }
+      .image-wrapper img {
+        height: auto;            /* Tinggi otomatis menyesuaikan proporsi gambar */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- ========================================== -->
+
+  <!-- Menu Navigasi Utama -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="uiux.html">UI/UX Design</a>
+    <a href="animasi.html">Animasi 3D</a>
+    <a href="iot.html" class="active">IoT</a> <!-- Link Aktif -->
+    <a href="web.html">Front End</a>
+  </nav>
+
+  <!-- Pembungkus Konten Utama -->
+  <div class="container">
+
+    <!-- Judul Halaman -->
+    <h1 class="main-title">INTERNET OF THINGS</h1>
+
+    <!-- Proyek 1: Alat Pendeteksi Kebocoran Gas (Foto di Kiri, Teks di Kanan) -->
+    <div class="section-gas">
+      <div class="image-wrapper">
+        <img src="asset/iot 1.png" alt="Foto Proyek Alat Pendeteksi Kebocoran Gas">
+      </div>
+      <div class="content-box">
+        <h2 class="content-title">Alat Pendeteksi Kebocoran Gas</h2>
+        <p class="content-desc">
+          Alat Pendeteksi Kebocoran Gas merupakan sistem berbasis IoT yang dirancang untuk mendeteksi kebocoran gas secara dini dan memberikan peringatan agar risiko kecelakaan dapat diminimalkan.
+        </p>
+      </div>
+    </div>
+
+    <!-- Proyek 2: Sistem Pengambilan Sampah Otomatis (Teks di Kiri, Foto di Kanan) -->
+    <div class="section-sampah">
+      <div class="content-box">
+        <h2 class="content-title">Sistem Pengambilan Sampah Otomatis</h2>
+        <p class="content-desc">
+          Sistem Pengambilan Sampah Otomatis merupakan sistem berbasis IoT yang menggunakan mekanisme rol berputar untuk mendeteksi dan mengangkat sampah di permukaan kolam secara otomatis.
+        </p>
+      </div>
+      <div class="image-wrapper">
+        <img src="asset/iot 2.png" alt="Foto Proyek Sistem Pengambilan Sampah Otomatis">
+      </div>
+    </div>
+
+  </div> <!-- Akhir container -->
+
+</body>
+</html>

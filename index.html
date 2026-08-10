@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda - Portofolio Rika Aulia</title>
+  
+  <!-- ========================================== -->
+  <!-- BAGIAN STYLESHEET (CSS)                   -->
+  <!-- ========================================== -->
+  <style>
+    /* ------------------------------------------ */
+    /* 1. Pengaturan Dasaran / Reset CSS          */
+    /* ------------------------------------------ */
+    * {
+      box-sizing: border-box; /* Memastikan padding & border tidak merusak lebar elemen */
+      margin: 0;             /* Menghapus margin bawaan browser */
+      padding: 0;            /* Menghapus padding bawaan browser */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Jenis font utama */
+    }
+    
+    body {
+      background-color: #f7f9fc; /* Warna latar belakang halaman (abu-abu muda) */
+      color: #1a1d20;            /* Warna teks utama (hitam keabu-abuan) */
+      padding: 20px 40px 60px;   /* Jarak ruang di sekeliling halaman (Atas Kiri/Kanan Bawah) */
+    }
+
+    /* Pembungkus utama untuk membatasi lebar konten di tengah */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;            /* Membuat posisi container berada di tengah layar */
+    }
+
+    /* ------------------------------------------ */
+    /* 2. Style Menu Navigasi (Navbar)           */
+    /* ------------------------------------------ */
+    nav {
+      display: flex;
+      justify-content: center;   /* Posisi menu berada di tengah */
+      gap: 20px;                 /* Jarak antar link navigasi */
+      margin-bottom: 50px;       /* Jarak navigasi ke konten di bawahnya */
+      padding: 15px;
+      background: #ffffff;       /* Latar putih navigasi */
+      border-radius: 30px;       /* Sudut melengkung halus (kapsul) */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Bayangan lembut di bawah navbar */
+    }
+
+    nav a {
+      text-decoration: none;     /* Menghapus garis bawah pada link */
+      color: #64748b;            /* Warna teks link (abu-abu) */
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease; /* Efek transisi halus saat tombol di-hover */
+    }
+
+    /* Efek saat link di-hover (disorot) atau sedang aktif */
+    nav a:hover, nav a.active {
+      color: #ffffff;            /* Warna teks berubah jadi putih */
+      background-color: #3b2bee; /* Warna background berubah jadi biru/ungu */
+    }
+
+    /* ------------------------------------------ */
+    /* 3. Style Bagian Hero (Perkenalan Diri)     */
+    /* ------------------------------------------ */
+    .hero {
+      display: flex;
+      justify-content: space-between; /* Teks di kiri, gambar di kanan */
+      align-items: flex-start;
+      margin-bottom: 70px;
+      gap: 40px;                 /* Jarak antara blok teks dan gambar */
+    }
+
+    .hero-text {
+      flex: 1;                   /* Mengambil sisa ruang yang tersedia di kiri */
+    }
+
+    .hero-subtitle {
+      color: #5d46e2;            /* Warna teks perkenalan kecil */
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1.5px;     /* Jarak antar huruf */
+      text-transform: uppercase; /* Membuat teks huruf kapital semua */
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 42px;
+      line-height: 1.15;         /* Jarak antar baris kalimat */
+      font-weight: 800;
+      color: #0f172a;            /* Warna judul utama */
+      margin-bottom: 24px;
+    }
+
+    /* Style khusus untuk teks nama yang diberi warna pembeda */
+    .hero-title span {
+      color: #3b2bee;
+    }
+
+    .hero-desc {
+      color: #64748b;            /* Warna deskripsi (abu-abu) */
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 520px;          /* Batas lebar teks deskripsi */
+    }
+
+    /* Frame/Wadah untuk foto profil */
+    .hero-image-wrapper {
+      width: 240px;              /* Lebar foto */
+      height: 290px;             /* Tinggi foto */
+      flex-shrink: 0;            /* Mencegah gambar menyusut saat layar mengecil */
+      border-radius: 4px;        /* Lengkungan sudut foto */
+      overflow: hidden;          /* Memotong bagian foto yang keluar dari frame */
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;         /* Memastikan foto terisi penuh tanpa distorsi */
+    }
+
+    /* ------------------------------------------ */
+    /* 4. Style Bagian Software / Alat Kerja     */
+    /* ------------------------------------------ */
+    .software-section {
+      text-align: center;        /* Meratakan teks bagian ini ke tengah */
+    }
+
+    .software-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .software-subtitle {
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 30px;
+    }
+
+    /* Layout Grid 3 kolom untuk kartu software */
+    .software-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Membagi 3 kolom dengan lebar sama */
+      gap: 20px;                             /* Jarak antar kartu */
+    }
+
+    /* Style setiap kartu software */
+    .card {
+      background: #ffffff;       /* Latar putih kartu */
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Bayangan halus */
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efek transisi saat di-hover */
+    }
+
+    /* Efek hover saat kartu disorot kursor */
+    .card:hover {
+      transform: translateY(-5px);                /* Kartu naik sedikit ke atas */
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Bayangan makin jelas */
+    }
+
+    /* Lingkaran tempat ikon software */
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      background: #f0eeff;       /* Warna latar lingkaran ikon */
+      border-radius: 50%;        /* Membuat bentuk lingkaran sempurna */
+      display: flex;
+      align-items: center;
+      justify-content: center;   /* Memposisikan ikon tepat di tengah lingkaran */
+      margin: 0 auto 16px;       /* Posisikan lingkaran di tengah kartu */
+    }
+
+    /* Ukuran ikon SVG di dalam kartu */
+    .card-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- ========================================== -->
+  <div class="container">
+
+    <!-- 1. Menu Navigasi Utama -->
+    <nav>
+      <a href="index.html" class="active">Beranda</a> <!-- Link Aktif -->
+      <a href="uiux.html">UI/UX Design</a>
+      <a href="animasi.html">Animasi 3D</a>
+      <a href="iot.html">IoT</a>
+      <a href="web.html">Front End</a>
+    </nav>
+
+    <!-- 2. Section Hero (Perkenalan & Foto Profil) -->
+    <div class="hero">
+      
+      <!-- Teks Perkenalan di Kiri -->
+      <div class="hero-text">
+        <div class="hero-subtitle">HALO, PERKENALKAN</div>
+        <h1 class="hero-title">Saya <span>Rika Aulia</span>,<br>mahasiswa Teknik<br>Multimedia &<br>Jaringan</h1>
+        <p class="hero-desc">
+          Selama perkuliahan, saya telah mengerjakan berbagai proyek, seperti UI/UX Design, Internet of Things (IoT), Animasi 3D, dan Front-End Website. Portofolio ini berisi kumpulan proyek yang telah saya kerjakan sebagai bentuk pengalaman, pembelajaran, dan perkembangan kemampuan saya.
+        </p>
+      </div>
+
+      <!-- Foto Profil di Kanan -->
+      <div class="hero-image-wrapper">
+        <img src="asset/foto.jpeg" alt="Foto Rika Aulia">
+      </div>
+
+    </div>
+
+    <!-- 3. Section Software yang Digunakan -->
+    <div class="software-section">
+      <h2 class="software-title">Software yang Digunakan</h2>
+      <p class="software-subtitle">Alat utama dalam alur kerja kreatif saya.</p>
+      
+      <!-- Grid Kartu Software -->
+      <div class="software-grid">
+
+        <!-- Kartu 1: Figma -->
+        <div class="card">
+          <div class="card-icon">
+            <!-- Ikon SVG Vektor Figma -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 57" fill="none">
+              <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z" fill="#0ACF83"/>
+              <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#03A9F4"/>
+              <path d="M0 28.5C0 23.2533 4.25329 19 9.5 19H19V38H9.5C4.25329 38 0 33.7467 0 28.5Z" fill="#F24E1E"/>
+              <path d="M0 9.5C0 4.25329 4.25329 0 9.5 0H19V19H9.5C4.25329 19 0 14.7467 0 9.5Z" fill="#FF7262"/>
+              <path d="M19 0H28.5C33.7467 0 38 4.25329 38 9.5C38 14.7467 33.7467 19 28.5 19H19V0Z" fill="#1ABCFE"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Figma</h3>
+          <p class="card-desc">UI/UX Design, Prototyping, & Design Systems.</p>
+        </div>
+
+        <!-- Kartu 2: Blender -->
+        <div class="card">
+          <div class="card-icon">
+            <!-- Ikon SVG Vektor Blender -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M480 304c0 79.5-64.5 144-144 144s-144-64.5-144-144c0-21 4.5-40.9 12.6-58.8L35.6 150.2c-10.7-6.2-14.4-19.9-8.2-30.6 6.2-10.7 19.9-14.4 30.6-8.2l191.1 110.3c25.2-14.8 54.5-23.7 85.9-23.7 79.5 0 144 64.5 144 144z" fill="#E87D0D"/>
+              <path d="M336 216c-48.6 0-88 39.4-88 88s39.4 88 88 88 88-39.4 88-88-39.4-88-88-88z" fill="#265787"/>
+              <circle cx="336" cy="304" r="48" fill="#FFFFFF"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Blender</h3>
+          <p class="card-desc">3D Modeling, Animation, & Rendering.</p>
+        </div>
+
+        <!-- Kartu 3: VS Code -->
+        <div class="card">
+          <div class="card-icon">
+            <!-- Ikon SVG Vektor Visual Studio Code -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <path d="M 23.5,62.8 L 3.5,47.5 C 1.2,45.8 1.2,42.2 3.5,40.5 L 23.5,25.2 C 25.4,23.8 28.1,24.2 29.5,26.1 L 43.8,44.0 L 29.5,61.9 C 28.1,63.8 25.4,64.2 23.5,62.8 Z" fill="#0066B8"/>
+              <path d="M 23.5,62.8 L 74.2,16.2 C 76.8,13.8 81.0,15.6 81.0,19.2 L 81.0,68.8 C 81.0,72.4 76.8,74.2 74.2,71.8 L 23.5,25.2" fill="#007ACC"/>
+              <path d="M 81.0,19.2 L 94.8,26.1 C 97.4,27.4 99.0,30.1 99.0,33.0 L 99.0,55.0 C 99.0,57.9 97.4,60.6 94.8,61.9 L 81.0,68.8 Z" fill="#1F9CF0"/>
+              <path d="M 74.2,16.2 L 23.5,25.2 C 20.8,25.7 18.8,28.0 18.8,30.8 L 18.8,57.2 C 18.8,60.0 20.8,62.3 23.5,62.8 L 74.2,71.8 Z" fill="#0078D4"/>
+            </svg>
+          </div>
+          <h3 class="card-title">VS Code</h3>
+          <p class="card-desc">Web Development, HTML/CSS, JS, & Frameworks.</p>
+        </div>
+
+      </div> <!-- Akhir software-grid -->
+    </div> <!-- Akhir software-section -->
+
+  </div> <!-- Akhir container -->
+</body>
+</html>
