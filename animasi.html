@@ -14,8 +14,8 @@
     /* ------------------------------------------ */
     * {
       box-sizing: border-box; /* Padding dan border terhitung di dalam ukuran total elemen */
-      margin: 0;             /* Menghapus margin bawaan browser */
-      padding: 0;            /* Menghapus padding bawaan browser */
+      margin: 0;              /* Menghapus margin bawaan browser */
+      padding: 0;             /* Menghapus padding bawaan browser */
     }
 
     body {
@@ -25,7 +25,7 @@
       padding: 20px 20px 40px;   /* Ruang bagian atas, samping, dan bawah */
       display: flex;
       flex-direction: column;    /* Menyusun elemen navbar dan container secara vertikal */
-      align-items: center;       /* Memposisikan seluruh konten di tengah layar */
+      align-items: center;        /* Memposisikan seluruh konten di tengah layar */
     }
 
     /* ------------------------------------------ */
@@ -40,6 +40,7 @@
       background: rgba(255, 255, 255, 0.15); /* Latar transparan (efek kaca) */
       backdrop-filter: blur(10px);          /* Efek buram pada latar belakang kaca */
       border-radius: 30px;                  /* Sudut melengkung halus (bentuk kapsul) */
+      flex-wrap: wrap;           /* Memungkinkan menu berbaris jika layar sempit */
     }
 
     nav a {
@@ -50,6 +51,7 @@
       padding: 8px 16px;
       border-radius: 20px;
       transition: all 0.3s ease; /* Efek transisi halus saat disorot kursor */
+      white-space: nowrap;
     }
 
     /* Efek hover dan penanda menu yang sedang aktif */
@@ -87,6 +89,8 @@
       height: 240px;
       background: #000;          /* Latar hitam jika gambar belum termuat */
       margin-bottom: 15px;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     .image-top img {
@@ -106,6 +110,8 @@
     .grid-middle-item {
       height: 180px;
       background: #000;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     .grid-middle-item img {
@@ -120,6 +126,8 @@
       height: 220px;
       background: #000;
       margin-bottom: 30px;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     .image-bottom img {
@@ -137,12 +145,66 @@
       text-align: left;         /* Teks deskripsi rata kiri */
       color: #f1f5f9;            /* Warna putih lembut */
     }
+
+    /* ------------------------------------------ */
+    /* 6. Tampilan Responsif (HP / Tablet)        */
+    /* ------------------------------------------ */
+    @media (max-width: 600px) {
+      body {
+        padding: 15px 15px 30px;
+      }
+
+      /* Navbar HP */
+      nav {
+        gap: 8px;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      /* Judul HP */
+      .main-title {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      /* Penyesuaian Ketinggian Gambar agar tidak memakan terlalu banyak ruang layar HP */
+      .image-top {
+        height: 180px;
+        margin-bottom: 10px;
+      }
+
+      .grid-middle {
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .grid-middle-item {
+        height: 130px;
+      }
+
+      .image-bottom {
+        height: 160px;
+        margin-bottom: 20px;
+      }
+
+      /* Deskripsi HP */
+      .description {
+        font-size: 13px;
+        text-align: justify; /* Rata kanan-kiri agar rapi di layar HP yang sempit */
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- ========================================== -->
-  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                 -->
   <!-- ========================================== -->
 
   <!-- Menu Navigasi Utama -->
