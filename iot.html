@@ -14,8 +14,8 @@
     /* ------------------------------------------ */
     * {
       box-sizing: border-box; /* Ukuran elemen mencakup padding & border */
-      margin: 0;             /* Menghapus margin default dari browser */
-      padding: 0;            /* Menghapus padding default dari browser */
+      margin: 0;              /* Menghapus margin default dari browser */
+      padding: 0;             /* Menghapus padding default dari browser */
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font utama */
     }
 
@@ -25,7 +25,7 @@
       padding: 20px 20px 60px;   /* Spasi bagian atas, kanan/kiri, dan bawah */
       display: flex;
       flex-direction: column;    /* Menata navbar dan container secara vertikal */
-      align-items: center;       /* Memposisikan seluruh konten di tengah layar */
+      align-items: center;        /* Memposisikan seluruh konten di tengah layar */
     }
 
     /* ------------------------------------------ */
@@ -40,6 +40,7 @@
       background: rgba(255, 255, 255, 0.4); /* Efek latar kaca transparan */
       backdrop-filter: blur(10px);          /* Efek buram/blur di belakang kaca */
       border-radius: 30px;                  /* Sudut bulat melengkung (kapsul) */
+      flex-wrap: wrap;           /* Memungkinkan menu berbaris jika layar sempit */
     }
 
     nav a {
@@ -50,6 +51,7 @@
       padding: 8px 16px;
       border-radius: 20px;
       transition: all 0.3s ease; /* Transisi efek hover yang halus */
+      white-space: nowrap;
     }
 
     /* Efek hover dan status tombol aktif */
@@ -80,10 +82,10 @@
     /* 4. Style Seksi Proyek 1 (Kebocoran Gas)   */
     /* ------------------------------------------ */
     .section-gas {
-      display: flex;             /* Menyusun gambar dan deskripsi berdampingan */
-      gap: 35px;                 /* Jarak antara bingkai foto dan deskripsi */
-      align-items: center;       /* Memposisikan teks dan foto sejajar secara vertikal */
-      margin-bottom: 70px;       /* Jarak ke seksi proyek berikutnya */
+      display: flex;              /* Menyusun gambar dan deskripsi berdampingan */
+      gap: 35px;                  /* Jarak antara bingkai foto dan deskripsi */
+      align-items: center;        /* Memposisikan teks dan foto sejajar secara vertikal */
+      margin-bottom: 70px;        /* Jarak ke seksi proyek berikutnya */
     }
 
     /* Style Frame/Bingkai Foto Proyek */
@@ -98,8 +100,8 @@
 
     .image-wrapper img {
       width: 100%;
-      height: 360px;             /* Tinggi area foto */
-      object-fit: cover;         /* Memastikan gambar terisi rapi tanpa terdistorsi */
+      height: 360px;              /* Tinggi area foto */
+      object-fit: cover;          /* Memastikan gambar terisi rapi tanpa terdistorsi */
       display: block;
     }
 
@@ -126,8 +128,8 @@
     /* 5. Style Seksi Proyek 2 (Pengambil Sampah)*/
     /* ------------------------------------------ */
     .section-sampah {
-      display: flex;             /* Menyusun deskripsi dan foto berdampingan */
-      gap: 35px;                 /* Jarak antar elemen */
+      display: flex;              /* Menyusun deskripsi dan foto berdampingan */
+      gap: 35px;                  /* Jarak antar elemen */
       align-items: center;
     }
 
@@ -135,15 +137,58 @@
     /* 6. Media Query (Responsif Layar Kecil/HP)  */
     /* ------------------------------------------ */
     @media (max-width: 850px) {
-      /* Mengubah tampilan berdampingan menjadi bertumpuk vertikal pada HP */
+      body {
+        padding: 15px 15px 40px;
+      }
+
+      /* Navbar HP */
+      nav {
+        gap: 8px;
+        padding: 10px 15px;
+        margin-bottom: 25px;
+        border-radius: 20px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      /* Judul HP */
+      .main-title {
+        font-size: 30px;
+        margin-bottom: 30px;
+      }
+
+      /* Tata Letak Bertumpuk Vertikal */
       .section-gas, .section-sampah {
         flex-direction: column;
+        gap: 20px;
+        margin-bottom: 45px;
       }
+
+      /* Mengatur Urutan Proyek 2 pada HP: Gambar Dulu, Baru Teks Deskripsi */
+      .section-sampah .image-wrapper {
+        order: -1;
+      }
+
       .image-wrapper {
         width: 100%;             /* Mengikuti lebar penuh layar HP */
       }
+
       .image-wrapper img {
-        height: auto;            /* Tinggi otomatis menyesuaikan proporsi gambar */
+        height: 240px;           /* Ketinggian gambar yang proporsional di layar HP */
+      }
+
+      /* Teks Proyek HP */
+      .content-title {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+
+      .content-desc {
+        font-size: 14px;
+        text-align: justify;     /* Rata kanan-kiri agar rapi di layar HP */
       }
     }
   </style>
@@ -151,7 +196,7 @@
 <body>
 
   <!-- ========================================== -->
-  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                 -->
   <!-- ========================================== -->
 
   <!-- Menu Navigasi Utama -->
