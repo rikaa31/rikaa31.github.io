@@ -14,21 +14,21 @@
     /* ------------------------------------------ */
     * {
       box-sizing: border-box; /* Ukuran elemen mencakup padding & border */
-      margin: 0;             /* Menghapus margin default dari browser */
-      padding: 0;            /* Menghapus padding default dari browser */
+      margin: 0;              /* Menghapus margin default dari browser */
+      padding: 0;             /* Menghapus padding default dari browser */
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font utama */
     }
 
     body {
       /* Background putih bersih dengan pencahayaan gradasi ungu muda / lavender di sudut */
       background: #ffffff radial-gradient(circle at 10% 15%, rgba(147, 112, 219, 0.15) 0%, transparent 45%),
-                             radial-gradient(circle at 90% 85%, rgba(138, 43, 226, 0.1) 0%, transparent 45%);
+                         radial-gradient(circle at 90% 85%, rgba(138, 43, 226, 0.1) 0%, transparent 45%);
       background-attachment: fixed; /* Latar belakang tetap tenang saat halaman di-scroll */
       color: #1e1b2e;            /* Warna teks utama disesuaikan menjadi ungu gelap pekat */
       padding: 20px 20px 60px;   /* Spasi bagian atas, kanan/kiri, dan bawah */
       display: flex;
       flex-direction: column;    /* Menata navbar dan container secara vertikal */
-      align-items: center;       /* Memposisikan seluruh konten di tengah layar */
+      align-items: center;        /* Memposisikan seluruh konten di tengah layar */
       min-height: 100vh;
     }
 
@@ -46,6 +46,7 @@
       border: 1px solid rgba(147, 112, 219, 0.25); /* Garis tepi ungu muda transparan */
       border-radius: 30px;                  /* Sudut bulat melengkung (kapsul) */
       box-shadow: 0 4px 15px rgba(147, 112, 219, 0.08);
+      flex-wrap: wrap;           /* Memungkinkan tombol menu berbaris rapi jika layar sempit */
     }
 
     nav a {
@@ -56,6 +57,7 @@
       padding: 8px 16px;
       border-radius: 20px;
       transition: all 0.3s ease; /* Transisi efek hover yang halus */
+      white-space: nowrap;
     }
 
     /* Efek hover dan status tombol aktif */
@@ -88,17 +90,17 @@
     /* 4. Style Seksi Proyek 1 (Kebocoran Gas)   */
     /* ------------------------------------------ */
     .section-gas {
-      display: flex;             /* Menyusun gambar dan deskripsi berdampingan */
-      gap: 35px;                 /* Jarak antara bingkai foto dan deskripsi */
-      align-items: center;       /* Memposisikan teks dan foto sejajar secara vertikal */
-      margin-bottom: 70px;       /* Jarak ke seksi proyek berikutnya */
+      display: flex;              /* Menyusun gambar dan deskripsi berdampingan */
+      gap: 35px;                  /* Jarak antara bingkai foto dan deskripsi */
+      align-items: center;        /* Memposisikan teks dan foto sejajar secara vertikal */
+      margin-bottom: 70px;        /* Jarak ke seksi proyek berikutnya */
     }
 
     /* Style Frame/Bingkai Foto Proyek */
     .image-wrapper {
       width: 480px;              /* Lebar bingkai foto */
       flex-shrink: 0;            /* Mencegah gambar menyusut saat tampilan diperkecil */
-      border-radius: 12px;       /* Lengkungan sudut foto */
+      border-radius: 12px;        /* Lengkungan sudut foto */
       overflow: hidden;          /* Memotong bagian foto yang membalap dari frame */
       border: 2px solid rgba(147, 112, 219, 0.3); /* Bingkai aksen ungu halus */
       box-shadow: 0 8px 25px rgba(124, 92, 191, 0.15); /* Bayangan lembut bernuansa ungu */
@@ -107,8 +109,8 @@
 
     .image-wrapper img {
       width: 100%;
-      height: 360px;             /* Tinggi area foto */
-      object-fit: cover;         /* Memastikan gambar terisi rapi tanpa terdistorsi */
+      height: 360px;              /* Tinggi area foto */
+      object-fit: cover;          /* Memastikan gambar terisi rapi tanpa terdistorsi */
       display: block;
     }
 
@@ -140,8 +142,8 @@
     /* 5. Style Seksi Proyek 2 (Pengambil Sampah)*/
     /* ------------------------------------------ */
     .section-sampah {
-      display: flex;             /* Menyusun deskripsi dan foto berdampingan */
-      gap: 35px;                 /* Jarak antar elemen */
+      display: flex;              /* Menyusun deskripsi dan foto berdampingan */
+      gap: 35px;                  /* Jarak antar elemen */
       align-items: center;
     }
 
@@ -149,15 +151,67 @@
     /* 6. Media Query (Responsif Layar Kecil/HP)  */
     /* ------------------------------------------ */
     @media (max-width: 850px) {
+      body {
+        padding: 15px 15px 40px;
+      }
+
+      /* Navbar HP */
+      nav {
+        gap: 8px;
+        padding: 8px 12px;
+        margin-bottom: 25px;
+        border-radius: 20px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      /* Judul HP */
+      .main-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+        -webkit-text-stroke: 0.5px #23123b;
+      }
+
       /* Mengubah tampilan berdampingan menjadi bertumpuk vertikal pada HP */
       .section-gas, .section-sampah {
         flex-direction: column;
+        gap: 20px;
+        margin-bottom: 45px;
       }
+
+      /* Menyusun urutan Proyek 2 agar konsisten di HP (Gambar Dulu, Baru Teks) */
+      .section-sampah .image-wrapper {
+        order: -1;
+      }
+
       .image-wrapper {
         width: 100%;             /* Mengikuti lebar penuh layar HP */
       }
+
       .image-wrapper img {
-        height: auto;            /* Tinggi otomatis menyesuaikan proporsi gambar */
+        height: 220px;           /* Ketinggian foto yang ideal dan proporsional di HP */
+      }
+
+      /* Penyesuaian Blok Teks HP */
+      .content-box {
+        padding: 18px;
+        border-radius: 12px;
+        border-left: none;
+        border-top: 4px solid #7c5cbf; /* Memindahkan garis aksen ke atas agar lebih serasi pada layout vertikal */
+      }
+
+      .content-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .content-desc {
+        font-size: 14px;
+        text-align: justify;     /* Teks rata kanan-kiri agar paragraf di HP terlihat rapi */
+        line-height: 1.6;
       }
     }
   </style>
@@ -165,7 +219,7 @@
 <body>
 
   <!-- ========================================== -->
-  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                 -->
   <!-- ========================================== -->
 
   <!-- Menu Navigasi Utama -->
