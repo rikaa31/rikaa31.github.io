@@ -98,6 +98,7 @@
       padding-bottom: 15px;      /* Ruang bawah untuk scrollbar */
       margin-bottom: 30px;
       scroll-snap-type: x mandatory; /* Efek magnet halus saat di-scroll */
+      scroll-behavior: smooth;    /* Animasi pergerakan scroll halus */
       -webkit-overflow-scrolling: touch;
     }
 
@@ -218,30 +219,30 @@
     <h1 class="main-title">Animasi 3D</h1>
 
     <!-- Daftar 5 Video Horizontal -->
-    <div class="video-list-horizontal">
+    <div class="video-list-horizontal" id="videoSlider">
       <!-- Video 1 -->
       <div class="video-item">
-        <video src="asset/logo.mp4" autoplay loop muted playsinline controls></video>
+        <video src="asset/logo.mp4" autoplay muted playsinline controls></video>
       </div>
 
       <!-- Video 2 -->
       <div class="video-item">
-        <video src="asset/animasi_1.mp4" autoplay loop muted playsinline controls></video>
+        <video src="asset/animasi_1.mp4" muted playsinline controls></video>
       </div>
 
       <!-- Video 3 -->
       <div class="video-item">
-        <video src="asset/animasi_2.mp4" autoplay loop muted playsinline controls></video>
+        <video src="asset/animasi_2.mp4" muted playsinline controls></video>
       </div>
 
       <!-- Video 4 -->
       <div class="video-item">
-        <video src="asset/animasi_3.mp4" autoplay loop muted playsinline controls></video>
+        <video src="asset/animasi_3.mp4" muted playsinline controls></video>
       </div>
 
       <!-- Video 5 -->
       <div class="video-item">
-        <video src="asset/animasi_4.mp4" autoplay loop muted playsinline controls></video>
+        <video src="asset/animasi_4.mp4" muted playsinline controls></video>
       </div>
     </div>
 
@@ -251,6 +252,54 @@
     </p>
 
   </div> <!-- Akhir container -->
+
+  <!-- ========================================== -->
+  <!-- SCRIPTS (JAVASCRIPT UNTUK AUTO SCROLL)     -->
+  <!-- ========================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const slider = document.getElementById("videoSlider");
+      const videoItems = document.querySelectorAll(".video-item");
+      const videos = document.querySelectorAll(".video-item video");
+      let currentIndex = 0;
+
+      // Fungsi untuk menggeser layar ke video sesuai indeks
+      function scrollToVideo(index) {
+        if (index >= videoItems.length) {
+          currentIndex = 0; // Kembalikan ke video pertama jika sudah di ujung
+        } else {
+          currentIndex = index;
+        }
+
+        // Hentikan pemutaran semua video
+        videos.forEach(v => {
+          v.pause();
+          v.currentTime = 0;
+        });
+
+        // Geser kontainer horizontal ke posisi elemen video aktif
+        const targetVideo = videoItems[currentIndex];
+        slider.scrollTo({
+          left: targetVideo.offsetLeft - slider.offsetLeft,
+          behavior: 'smooth'
+        });
+
+        // Putar video yang aktif saat ini
+        const currentVideo = videos[currentIndex];
+        currentVideo.play().catch(e => console.log("Autoplay ditahan oleh browser:", e));
+      }
+
+      // Deteksi ketika video saat ini selesai diputar (ended)
+      videos.forEach((video, index) => {
+        video.addEventListener("ended", () => {
+          scrollToVideo(index + 1);
+        });
+      });
+
+      // Pilihan Cadangan: Jika video berdurasi sangat panjang/satu siklus penuh,
+      // kita juga bisa menambahkan timer perpindahan manual (Opsional: default menggunakan event 'ended')
+    });
+  </script>
 
 </body>
 </html>
