@@ -5,197 +5,165 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Front End Website</title>
   
-  <!-- ========================================== -->
-  <!-- BAGIAN STYLESHEET (CSS)                   -->
-  <!-- ========================================== -->
   <style>
     /* ------------------------------------------ */
-    /* 1. Pengaturan Dasaran / Reset CSS          */
+    /* 1. Reset CSS & Base Styles                 */
     /* ------------------------------------------ */
     * {
-      box-sizing: border-box; /* Ukuran total elemen dihitung beserta padding & border */
-      margin: 0;              /* Menghapus margin default bawaan browser */
-      padding: 0;             /* Menghapus padding default bawaan browser */
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font utama */
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      /* Gradasi Biru Slate Modern pada Latar Belakang Utama */
-      background: linear-gradient(135deg, #84B6E4 0%, #203B5C 50%, #93c5fd 100%);
-      background-attachment: fixed; /* Latar belakang tetap saat di-scroll */
-      color: #0f172a;            /* Warna teks utama (Biru Gelap / Slate) */
-      padding: 20px 20px 60px;   /* Spasi bagian atas, samping, dan bawah */
+      background: #ffffff radial-gradient(circle at 10% 15%, rgba(132, 182, 228, 0.18) 0%, transparent 45%),
+                         radial-gradient(circle at 90% 85%, rgba(32, 59, 92, 0.12) 0%, transparent 45%);
+      background-attachment: fixed;
+      color: #0f172a;
+      padding: 20px 20px 60px;
       display: flex;
-      flex-direction: column;    /* Menyusun navbar dan container secara vertikal */
-      align-items: center;        /* Memposisikan seluruh elemen di tengah layar */
+      flex-direction: column;
+      align-items: center;
       min-height: 100vh;
     }
 
     /* ------------------------------------------ */
-    /* 2. Style Menu Navigasi (Navbar Transparan) */
+    /* 2. Style Menu Navigasi                     */
     /* ------------------------------------------ */
     nav {
       display: flex;
-      justify-content: center;   /* Meratakan opsi menu di tengah */
-      gap: 20px;                 /* Jarak antar link navigasi */
-      margin-bottom: 40px;       /* Jarak navigasi ke judul halaman */
-      padding: 12px 25px;
-      background: rgba(255, 255, 255, 0.2); /* Efek kaca transparan putih */
-      backdrop-filter: blur(12px);          /* Efek blur pada latar belakang kaca */
-      border: 1px solid rgba(255, 255, 255, 0.3); /* Border tipis efek kaca */
-      border-radius: 30px;                  /* Sudut melengkung halus (kapsul) */
-      flex-wrap: wrap;           /* Memungkinkan menu berbaris rapi jika layar sempit */
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      padding: 10px 20px;
+      background: rgba(32, 59, 92, 0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(32, 59, 92, 0.2);
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(32, 59, 92, 0.08);
     }
 
     nav a {
-      text-decoration: none;     /* Menghapus garis bawah link */
-      color: #ffffff;            /* Warna teks link default (putih) */
+      text-decoration: none;
+      color: #203b5c;
       font-weight: 600;
       font-size: 14px;
       padding: 8px 16px;
       border-radius: 20px;
-      transition: all 0.3s ease; /* Transisi efek hover yang halus */
-      white-space: nowrap;
+      transition: all 0.3s ease;
     }
 
-    /* Efek hover dan penanda tombol aktif */
     nav a:hover, nav a.active {
-      color: #1e3a8a;            /* Teks berubah menjadi biru tua saat disorot/aktif */
-      background-color: #ffffff; /* Latar berubah menjadi putih solid */
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: #ffffff;
+      background-color: #203b5c;
+      box-shadow: 0 4px 12px rgba(32, 59, 92, 0.3);
     }
 
     /* ------------------------------------------ */
-    /* 3. Style Pembungkus Halaman Utama         */
+    /* 3. Style Pembungkus Utama                  */
     /* ------------------------------------------ */
     .container {
-      max-width: 1000px;         /* Batas lebar maksimum seluruh konten */
+      max-width: 1000px;
       width: 100%;
     }
 
-    /* Judul Utama "FRONT END WEBSITE" */
     .main-title {
       text-align: center;
       font-size: 46px;
       font-weight: 900;
-      color: #ffffff;            /* Warna putih kontras di atas gradasi biru */
+      color: #000000;
       letter-spacing: 2px;
       margin-bottom: 50px;
-      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan lembut pada judul */
     }
 
     /* ------------------------------------------ */
-    /* 4. Layout Kartu Showcase Website           */
+    /* 4. Layout Kartu Showcase & CSS Slider      */
     /* ------------------------------------------ */
     .section-website {
-      display: flex;              /* Menyusun gambar dan teks secara horizontal */
-      gap: 40px;                  /* Jarak antara gambar mockup dan teks */
-      align-items: center;        /* Memposisikan teks dan gambar sejajar vertikal */
-      /* Card bergaya Glassmorphism dengan latar terang transparan */
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.977);
-      padding: 35px;
-      border-radius: 20px;        /* Sudut kartu melengkung */
-      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.25); /* Bayangan lembut biru gelap */
-    }
-
-    /* Frame/Pembungkus Gambar Mockup Website */
-    .image-wrapper {
-      width: 520px;              /* Ukuran lebar gambar dibuat lebih dominan */
-      flex-shrink: 0;            /* Mencegah gambar menyusut saat layar menyempit */
       display: flex;
-      justify-content: center;
+      gap: 40px;
       align-items: center;
+      background: linear-gradient(135deg, #4A82BC 0%, #172D4A 100%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(23, 45, 74, 0.35);
     }
 
-    .image-wrapper img {
-      width: 100%;
+    /* Container Slider Foto Pure CSS */
+    .slider-container {
+      width: 520px;
+      flex-shrink: 0;
+      overflow: hidden; /* Menyembunyikan gambar lain di luar area tampilan */
+      border-radius: 12px;
+    }
+
+    /* Track / Barisan Gambar Bergerak Otomatis via CSS Animation */
+    .slides-track {
+      display: flex;
+      width: 500%; /* 5 Gambar = 500% */
+      animation: autoSlide 15s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+
+    .slides-track:hover {
+      animation-play-state: paused; /* Pause animasi saat cursor hover di gambar */
+    }
+
+    .slides-track img {
+      width: 20%; /* Setiap gambar mengambil 1/5 bagian (20%) */
       height: auto;
-      object-fit: contain;       /* Mengikuti proporsi asli gambar tanpa terdistorsi */
-      filter: drop-shadow(0 12px 24px rgba(30, 58, 138, 0.25)); /* Bayangan khusus dengan nuansa biru */
+      object-fit: contain;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.4));
     }
 
-    /* Blok Teks Informasi Proyek Website */
+    /* Keyframes Animasi Slide Otomatis 5 Foto */
+    @keyframes autoSlide {
+      0%, 16%   { transform: translateX(0%); }       /* Foto 1 */
+      20%, 36%  { transform: translateX(-20%); }     /* Foto 2 */
+      40%, 56%  { transform: translateX(-40%); }     /* Foto 3 */
+      60%, 76%  { transform: translateX(-60%); }     /* Foto 4 */
+      80%, 96%  { transform: translateX(-80%); }     /* Foto 5 */
+      100%      { transform: translateX(0%); }       /* Kembali ke Foto 1 */
+    }
+
+    /* ------------------------------------------ */
+    /* 5. Deskripsi Teks                          */
+    /* ------------------------------------------ */
     .content-box {
-      flex: 1;                   /* Mengambil sisa area di sebelah gambar */
+      flex: 1;
     }
 
     .content-title {
       font-size: 32px;
       font-weight: 800;
-      color: #1e3a8a;            /* Judul konten bernuansa biru navy pekat */
+      color: #ffffff;
       margin-bottom: 18px;
       line-height: 1.25;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .content-desc {
       font-size: 16px;
-      line-height: 1.7;          /* Jarak antar baris teks agar mudah dibaca */
-      color: #334155;            /* Teks deskripsi bernuansa slate gelap */
+      line-height: 1.7;
+      color: #e2e8f0;
     }
 
     /* ------------------------------------------ */
-    /* 5. Media Query (Responsif Layar HP/Tablet) */
+    /* 6. Media Query Responsive                  */
     /* ------------------------------------------ */
     @media (max-width: 900px) {
-      body {
-        padding: 15px 15px 40px;
-      }
-
-      /* Navbar HP */
-      nav {
-        gap: 8px;
-        padding: 10px 15px;
-        margin-bottom: 25px;
-        border-radius: 20px;
-      }
-
-      nav a {
-        font-size: 12px;
-        padding: 6px 12px;
-      }
-
-      /* Judul Halaman HP */
-      .main-title {
-        font-size: 30px;
-        margin-bottom: 25px;
-        letter-spacing: 1px;
-      }
-
-      /* Mengubah susunan samping menjadi bertumpuk vertikal saat di layar kecil */
       .section-website {
         flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-        border-radius: 16px;
+        padding: 25px;
       }
-
-      /* Gambar mengikuti lebar penuh layar */
-      .image-wrapper {
+      .slider-container {
         width: 100%;
-      }
-
-      /* Penyesuaian Teks HP */
-      .content-title {
-        font-size: 22px;
-        margin-bottom: 12px;
-        text-align: center; /* Rata tengah agar serasi dengan gambar di atasnya */
-      }
-
-      .content-desc {
-        font-size: 14px;
-        text-align: justify; /* Rata kanan-kiri agar tampilan paragraf rapi */
-        line-height: 1.6;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- ========================================== -->
-  <!-- BAGIAN KONTEN UTAMA (HTML)                 -->
-  <!-- ========================================== -->
 
   <!-- Menu Navigasi Utama -->
   <nav>
@@ -203,21 +171,27 @@
     <a href="uiux.html">UI/UX Design</a>
     <a href="animasi.html">Animasi 3D</a>
     <a href="iot.html">IoT</a>
-    <a href="web.html" class="active">Front End</a> <!-- Link Aktif -->
+    <a href="web.html" class="active">Front End</a>
   </nav>
 
   <!-- Pembungkus Konten Utama -->
   <div class="container">
 
-    <!-- Judul Halaman -->
     <h1 class="main-title">FRONT END WEBSITE</h1>
 
-    <!-- Seksi Showcase Proyek Website -->
     <div class="section-website">
       
-      <!-- Gambar Mockup Tampilan Website (Multi-device) -->
-      <div class="image-wrapper">
-        <img src="asset/website.png" alt="Sistem Informasi Tugas Akhir Mockup">
+      <!-- Container Slider Gambar (Pure CSS) -->
+      <div class="slider-container">
+        <div class="slides-track">
+          <img src="asset/log.png" alt="Tampilan 1">
+          <img src="asset/1.png" alt="Tampilan 2">
+          <img src="asset/2.png" alt="Tampilan 3">
+          <img src="asset/3.png" alt="Tampilan 4">
+          <img src="asset/4.png" alt="Tampilan 5">
+          <img src="asset/5.png" alt="Tampilan 6">
+          <img src="asset/6.png" alt="Tampilan 7">
+        </div>
       </div>
       
       <!-- Deskripsi Penjelasan Proyek Website -->
@@ -228,9 +202,9 @@
         </p>
       </div>
 
-    </div> <!-- Akhir section-website -->
+    </div>
 
-  </div> <!-- Akhir container -->
+  </div>
 
 </body>
 </html>
