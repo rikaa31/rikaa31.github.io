@@ -3,208 +3,204 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Front End Website</title>
+  <title>Animasi 3D</title>
   
+  <!-- ========================================== -->
+  <!-- BAGIAN STYLESHEET (CSS)                   -->
+  <!-- ========================================== -->
   <style>
     /* ------------------------------------------ */
-    /* 1. Reset CSS & Base Styles                 */
+    /* 1. Pengaturan Dasar (Reset CSS & Body)     */
     /* ------------------------------------------ */
     * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-sizing: border-box; /* Padding dan border terhitung di dalam ukuran total elemen */
+      margin: 0;             /* Menghapus margin bawaan browser */
+      padding: 0;            /* Menghapus padding bawaan browser */
     }
 
     body {
-      background: #ffffff radial-gradient(circle at 10% 15%, rgba(132, 182, 228, 0.18) 0%, transparent 45%),
-                         radial-gradient(circle at 90% 85%, rgba(32, 59, 92, 0.12) 0%, transparent 45%);
-      background-attachment: fixed;
-      color: #0f172a;
-      padding: 20px 20px 60px;
+      /* Background putih bersih dengan pencahayaan gradasi halus merah marun & hitam di pojok */
+      background: #ffffff radial-gradient(circle at 10% 10%, rgba(128, 18, 10, 0.08) 0%, transparent 40%),
+                             radial-gradient(circle at 90% 90%, rgba(0, 0, 0, 0.06) 0%, transparent 40%);
+      background-attachment: fixed; /* Latar tetap tenang saat di-scroll */
+      color: #1a1a1a;            /* Warna teks disesuaikan menjadi gelap agar kontras */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Jenis font utama */
+      padding: 20px 20px 40px;   /* Ruang bagian atas, samping, dan bawah */
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-direction: column;    /* Menyusun elemen navbar dan container secara vertikal */
+      align-items: center;       /* Memposisikan seluruh konten di tengah layar */
       min-height: 100vh;
     }
 
     /* ------------------------------------------ */
-    /* 2. Style Menu Navigasi                     */
+    /* 2. Style Menu Navigasi (Aksen Merah/Hitam) */
     /* ------------------------------------------ */
     nav {
       display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 40px;
+      justify-content: center;   /* Meratakan menu di tengah */
+      gap: 15px;                 /* Jarak antar opsi link navigasi */
+      margin-bottom: 30px;       /* Jarak navigasi ke judul di bawahnya */
       padding: 10px 20px;
-      background: rgba(32, 59, 92, 0.08);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(32, 59, 92, 0.2);
-      border-radius: 30px;
-      box-shadow: 0 4px 15px rgba(32, 59, 92, 0.08);
+      background: rgba(128, 18, 10, 0.05); /* Latar transparan nuansa merah marun */
+      backdrop-filter: blur(10px);          /* Efek buram pada latar belakang */
+      border: 1px solid rgba(128, 18, 10, 0.15); /* Akses garis tepi merah halus */
+      border-radius: 30px;                  /* Sudut melengkung halus (bentuk kapsul) */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
     nav a {
-      text-decoration: none;
-      color: #203b5c;
+      text-decoration: none;     /* Menghapus garis bawah pada link */
+      color: #80120a;            /* Warna teks link (merah marun) */
       font-weight: 600;
       font-size: 14px;
       padding: 8px 16px;
       border-radius: 20px;
-      transition: all 0.3s ease;
+      transition: all 0.3s ease; /* Efek transisi halus saat disorot kursor */
     }
 
+    /* Efek hover dan penanda menu yang sedang aktif */
     nav a:hover, nav a.active {
-      color: #ffffff;
-      background-color: #203b5c;
-      box-shadow: 0 4px 12px rgba(32, 59, 92, 0.3);
+      color: #ffffff;            /* Warna teks berubah jadi putih */
+      background-color: #80120a; /* Latar berubah jadi merah marun solid */
+      box-shadow: 0 4px 10px rgba(128, 18, 10, 0.3);
     }
 
     /* ------------------------------------------ */
-    /* 3. Style Pembungkus Utama                  */
+    /* 3. Style Pembungkus Halaman (Container)   */
     /* ------------------------------------------ */
     .container {
-      max-width: 1000px;
+      max-width: 500px;          /* Membatasi lebar maksimum halaman agar rapi */
       width: 100%;
-    }
-
-    .main-title {
       text-align: center;
-      font-size: 46px;
-      font-weight: 900;
-      color: #000000;
-      letter-spacing: 2px;
-      margin-bottom: 50px;
     }
 
-    /* ------------------------------------------ */
-    /* 4. Layout Kartu Showcase & CSS Slider      */
-    /* ------------------------------------------ */
-    .section-website {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-      background: linear-gradient(135deg, #4A82BC 0%, #172D4A 100%);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 35px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(23, 45, 74, 0.35);
-    }
-
-    /* Container Slider Foto Pure CSS */
-    .slider-container {
-      width: 520px;
-      flex-shrink: 0;
-      overflow: hidden; /* Menyembunyikan gambar lain di luar area tampilan */
-      border-radius: 12px;
-    }
-
-    /* Track / Barisan Gambar Bergerak Otomatis via CSS Animation */
-    .slides-track {
-      display: flex;
-      width: 500%; /* 5 Gambar = 500% */
-      animation: autoSlide 15s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-    }
-
-    .slides-track:hover {
-      animation-play-state: paused; /* Pause animasi saat cursor hover di gambar */
-    }
-
-    .slides-track img {
-      width: 20%; /* Setiap gambar mengambil 1/5 bagian (20%) */
-      height: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.4));
-    }
-
-    /* Keyframes Animasi Slide Otomatis 5 Foto */
-    @keyframes autoSlide {
-      0%, 16%   { transform: translateX(0%); }       /* Foto 1 */
-      20%, 36%  { transform: translateX(-20%); }     /* Foto 2 */
-      40%, 56%  { transform: translateX(-40%); }     /* Foto 3 */
-      60%, 76%  { transform: translateX(-60%); }     /* Foto 4 */
-      80%, 96%  { transform: translateX(-80%); }     /* Foto 5 */
-      100%      { transform: translateX(0%); }       /* Kembali ke Foto 1 */
-    }
-
-    /* ------------------------------------------ */
-    /* 5. Deskripsi Teks                          */
-    /* ------------------------------------------ */
-    .content-box {
-      flex: 1;
-    }
-
-    .content-title {
-      font-size: 32px;
+    /* Judul Utama "Animasi 3D" */
+    .main-title {
+      font-size: 48px;
       font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 18px;
-      line-height: 1.25;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .content-desc {
-      font-size: 16px;
-      line-height: 1.7;
-      color: #e2e8f0;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      font-family: 'Courier New', Courier, monospace; /* Style font gaya retro/tech */
+      color: #80120a;                                 /* Warna utama merah marun */
+      -webkit-text-stroke: 1.5px #000000;             /* Garis tepi teks berwarna hitam tegas */
     }
 
     /* ------------------------------------------ */
-    /* 6. Media Query Responsive                  */
+    /* 4. Style Galeri Video Horizontal           */
     /* ------------------------------------------ */
-    @media (max-width: 900px) {
-      .section-website {
-        flex-direction: column;
-        padding: 25px;
-      }
-      .slider-container {
-        width: 100%;
-      }
+    .video-list-horizontal {
+      display: flex;
+      flex-direction: row;       /* Menyusun video ke samping (horizontal) */
+      gap: 15px;                 /* Jarak antar video */
+      overflow-x: auto;          /* Mengaktifkan scroll ke samping jika video melebihi lebar */
+      padding-bottom: 15px;      /* Ruang bawah untuk scrollbar */
+      margin-bottom: 30px;
+      scroll-snap-type: x mandatory; /* Efek magnet halus saat di-scroll */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Kustomisasi Tampilan Scrollbar (Merah & Hitam) */
+    .video-list-horizontal::-webkit-scrollbar {
+      height: 8px;
+    }
+    .video-list-horizontal::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+    }
+    .video-list-horizontal::-webkit-scrollbar-thumb {
+      background: #80120a;       /* Scrollbar merah marun */
+      border-radius: 10px;
+    }
+
+    .video-item {
+      flex: 0 0 85%;             /* Setiap video mengambil 85% lebar container agar porsi video berikutnya terlihat */
+      height: 280px;
+      background: #000000;       /* Latar dalam video tetap hitam pekat agar kontras */
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #80120a;  /* Bingkai aksen merah marun */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Bayangan hitam lembut */
+      scroll-snap-align: center;  /* Mengunci video di tengah saat di-scroll */
+    }
+
+    .video-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;         /* Video memenuhi frame secara presisi */
+      display: block;
+    }
+
+    /* ------------------------------------------ */
+    /* 5. Style Deskripsi Proyek                  */
+    /* ------------------------------------------ */
+    .description {
+      font-size: 14px;
+      line-height: 1.6;          /* Jarak antar baris teks agar enak dibaca */
+      text-align: left;         /* Teks deskripsi rata kiri */
+      color: #2c2c2c;            /* Warna hitam gelap yang nyaman dibaca di latar putih */
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #80120a; /* Aksen garis merah marun tegas di sebelah kiri */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
   </style>
 </head>
 <body>
 
+  <!-- ========================================== -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- ========================================== -->
+
   <!-- Menu Navigasi Utama -->
   <nav>
     <a href="index.html">Beranda</a>
     <a href="uiux.html">UI/UX Design</a>
-    <a href="animasi.html">Animasi 3D</a>
+    <a href="animasi.html" class="active">Animasi 3D</a> <!-- Link Aktif -->
     <a href="iot.html">IoT</a>
-    <a href="web.html" class="active">Front End</a>
+    <a href="web.html">Front End</a>
   </nav>
 
   <!-- Pembungkus Konten Utama -->
   <div class="container">
 
-    <h1 class="main-title">FRONT END WEBSITE</h1>
+    <!-- Judul Halaman -->
+    <h1 class="main-title">Animasi 3D</h1>
 
-    <div class="section-website">
-      
-      <!-- Container Slider Gambar (Pure CSS) -->
-      <div class="slider-container">
-        <div class="slides-track">
-          <img src="asset/log.png" alt="Tampilan 1">
-          <img src="asset/1.png" alt="Tampilan 2">
-          <img src="asset/2.png" alt="Tampilan 3">
-          <img src="asset/3.png" alt="Tampilan 4">
-          <img src="asset/4.png" alt="Tampilan 5">
-          <img src="asset/5.png" alt="Tampilan 6">
-          <img src="asset/6.png" alt="Tampilan 7">
-        </div>
-      </div>
-      
-      <!-- Deskripsi Penjelasan Proyek Website -->
-      <div class="content-box">
-        <h2 class="content-title">Sistem Informasi Tugas Akhir</h2>
-        <p class="content-desc">
-          Sistem Operasi Tugas Akhir merupakan website yang mempermudah mahasiswa dan dosen dalam mengelola proses pengajuan tugas akhir, mulai dari pengajuan judul hingga tahapan persetujuan.
-        </p>
+    <!-- Daftar 5 Video Horizontal -->
+    <div class="video-list-horizontal">
+      <!-- Video 1 -->
+      <div class="video-item">
+        <video src="asset/logo.mp4" autoplay loop muted playsinline controls></video>
       </div>
 
+      <!-- Video 2 -->
+      <div class="video-item">
+        <video src="asset/animasi_1.mp4" autoplay loop muted playsinline controls></video>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="video-item">
+        <video src="asset/animasi_2.mp4" autoplay loop muted playsinline controls></video>
+      </div>
+
+      <!-- Video 4 -->
+      <div class="video-item">
+        <video src="asset/animasi_3.mp4" autoplay loop muted playsinline controls></video>
+      </div>
+
+      <!-- Video 5 -->
+      <div class="video-item">
+        <video src="asset/animasi_4.mp4" autoplay loop muted playsinline controls></video>
+      </div>
     </div>
 
-  </div>
+    <!-- Penjelasan singkat mengenai proyek 3D -->
+    <p class="description">
+      Gantech (Global Advanced Nusa TECHNOLOGY) adalah perusahaan teknologi yang berfokus pada pengembangan solusi perangkat keras dan perangkat lunak untuk gaming dan teknologi modern.
+    </p>
+
+  </div> <!-- Akhir container -->
 
 </body>
 </html>
