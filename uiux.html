@@ -14,20 +14,20 @@
     /* ------------------------------------------ */
     * {
       box-sizing: border-box; /* Padding dan border terhitung di dalam lebar total elemen */
-      margin: 0;             /* Menghapus margin default bawaan browser */
-      padding: 0;            /* Menghapus padding default bawaan browser */
+      margin: 0;              /* Menghapus margin default bawaan browser */
+      padding: 0;             /* Menghapus padding default bawaan browser */
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font utama */
     }
 
     body {
       /* Background putih bersih dengan pencahayaan gradasi hijau sage halus di beberapa sudut */
       background: #ffffff radial-gradient(circle at 15% 15%, rgba(140, 158, 94, 0.15) 0%, transparent 45%),
-                             radial-gradient(circle at 85% 85%, rgba(140, 158, 94, 0.12) 0%, transparent 45%);
+                         radial-gradient(circle at 85% 85%, rgba(140, 158, 94, 0.12) 0%, transparent 45%);
       background-attachment: fixed; /* Latar belakang tetap tenang saat halaman di-scroll */
       color: #2b331f;            /* Warna teks disesuaikan menjadi hijau gelap/hitam lembut */
       display: flex;
       flex-direction: column;    /* Menyusun elemen navbar dan container secara vertikal */
-      align-items: center;       /* Posisikan konten tepat di tengah secara horizontal */
+      align-items: center;        /* Posisikan konten tepat di tengah secara horizontal */
       padding: 20px 20px 40px;   /* Ruang bagian atas, samping, dan bawah */
       min-height: 100vh;
     }
@@ -46,6 +46,7 @@
       border: 1px solid rgba(140, 158, 94, 0.25); /* Garis tepi hijau sage transparan */
       border-radius: 30px;                  /* Sudut melengkung bentuk kapsul */
       box-shadow: 0 4px 15px rgba(140, 158, 94, 0.08);
+      flex-wrap: wrap;           /* Memungkinkan menu berbaris rapi jika layar sempit */
     }
 
     nav a {
@@ -56,6 +57,7 @@
       padding: 8px 16px;
       border-radius: 20px;
       transition: all 0.3s ease; /* Transisi halus saat disorot kursor */
+      white-space: nowrap;
     }
 
     /* Efek hover dan status tombol aktif */
@@ -73,7 +75,7 @@
       max-width: 600px;          /* Batas lebar maksimum konten agar tidak melebar jauh */
       display: flex;
       flex-direction: column;    /* Menyusun judul, mockup top, deskripsi, & mockup bottom */
-      align-items: center;       /* Memastikan item berada di posisi tengah */
+      align-items: center;        /* Memastikan item berada di posisi tengah */
     }
 
     /* Judul Utama "UI & UX DESIGN" */
@@ -98,6 +100,7 @@
       overflow: hidden;          /* Memotong bagian gambar yang keluar dari bingkai */
       background: #fff;
       box-shadow: 0 12px 24px rgba(140, 158, 94, 0.2); /* Bayangan dengan nuansa lembut */
+      flex-shrink: 1;            /* Mengizinkan bingkai menyusut secara proporsional saat layar mengecil */
     }
 
     .phone-frame img {
@@ -121,7 +124,7 @@
 
     /* Variasi tinggi & posisi offset vertikal untuk efek melayang acak/kreatif */
     .phone-top-1 { width: 155px; height: 300px; margin-top: 15px; } /* HP 1 agak turun */
-    .phone-top-2 { width: 155px; height: 310px; }                   /* HP 2 paling tinggi */
+    .phone-top-2 { width: 155px; height: 310px; }                    /* HP 2 paling tinggi */
     .phone-top-3 { width: 155px; height: 300px; margin-top: 45px; } /* HP 3 turun lebih jauh */
 
     /* ------------------------------------------ */
@@ -130,14 +133,15 @@
     .description {
       color: #2b331f;            /* Teks hijau gelap agar mudah dibaca di latar putih */
       font-size: 16px;
-      line-height: 1.6;
-      text-align: left;         /* Teks deskripsi rata kiri */
+      line-height: 1.7;
+      text-align: justify;       /* Teks deskripsi rata kiri-kanan */
       margin-bottom: 40px;
       padding: 20px;
       background: #ffffff;
       border-radius: 12px;
       border-left: 4px solid #8c9e5e; /* Aksen garis hijau sage tegak di sisi kiri */
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      width: 100%;
     }
 
     /* ------------------------------------------ */
@@ -155,12 +159,71 @@
     .phone-bottom-1 { width: 155px; height: 300px; }
     .phone-bottom-2 { width: 155px; height: 310px; margin-bottom: 30px; } /* HP tengah lebih tinggi */
     .phone-bottom-3 { width: 155px; height: 300px; }
+
+    /* ------------------------------------------ */
+    /* 8. Media Query (Responsif Layar Kecil/HP)  */
+    /* ------------------------------------------ */
+    @media (max-width: 600px) {
+      body {
+        padding: 15px 15px 30px;
+      }
+
+      /* Navbar HP */
+      nav {
+        gap: 8px;
+        padding: 8px 12px;
+        margin-bottom: 25px;
+        border-radius: 20px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      /* Judul HP */
+      .main-title {
+        font-size: 38px;
+        text-align: center;      /* Dibuat rata tengah agar lebih simetris di layar HP */
+        margin-bottom: 25px;
+        -webkit-text-stroke: 1px #2b331f;
+      }
+
+      /* Penyesuaian Grup Mockup HP Atas & Bawah */
+      .mockup-group-top, .mockup-group-bottom {
+        gap: 8px;                /* Jarak antar mockup diperkecil agar muat 3 HP sejajar */
+        margin-bottom: 25px;
+      }
+
+      /* Ukuran Bingkai HP Otomatis Menyesuaikan Layar HP */
+      .phone-top-1, .phone-top-2, .phone-top-3,
+      .phone-bottom-1, .phone-bottom-2, .phone-bottom-3 {
+        width: 31%;              /* Mengambil porsi sepertiga layar untuk 3 mockup */
+        height: 200px;           /* Ketinggian disesuaikan agar proporsional */
+        border-width: 2px;
+        border-radius: 16px;     /* Lengkungan sudut disesuaikan dengan skala kecil */
+      }
+
+      /* Mengurangi efek margin offset vertikal agar tidak terlalu jauh di layar kecil */
+      .phone-top-1 { margin-top: 10px; }
+      .phone-top-3 { margin-top: 20px; }
+      .phone-bottom-2 { margin-bottom: 15px; }
+
+      /* Deskripsi HP */
+      .description {
+        font-size: 13.5px;
+        padding: 16px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        text-align: justify;     /* Tetap rata kiri-kanan di HP */
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- ========================================== -->
-  <!-- BAGIAN KONTEN UTAMA (HTML)                -->
+  <!-- BAGIAN KONTEN UTAMA (HTML)                 -->
   <!-- ========================================== -->
   
   <!-- Menu Navigasi Utama -->
